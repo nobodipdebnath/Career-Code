@@ -1,14 +1,18 @@
 import React, { use } from 'react';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 
-const GoogleSignIn = () => {
+const GoogleSignIn = ({from}) => {
     const {googleSignIn} = use(AuthContext)
+    const navigate = useNavigate();
+
     const handelGoogleSignIn = () => {
         googleSignIn()
         .then(result => {
             console.log(result);
             toast.success('Login Success')
+            navigate(from || '/');
         })
         .catch(error => {
             toast.error(error.message);

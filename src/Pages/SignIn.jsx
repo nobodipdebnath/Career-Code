@@ -4,9 +4,14 @@ import Lottie from 'lottie-react';
 import { AuthContext } from '../context/AuthContext/AuthContext';
 import toast from 'react-hot-toast';
 import GoogleSignIn from '../components/Share/GoogleSignIn';
+import { useLocation, useNavigate } from 'react-router';
 
 const SignIn = () => {
     const {signIn} = use(AuthContext);
+    const location = useLocation();
+    const from = location.state || '/';
+    const navigate = useNavigate();
+
     const handleSignIn =(e) => {
         e.preventDefault();
         const form = e.target;
@@ -18,6 +23,7 @@ const SignIn = () => {
         .then(result => {
             console.log(result.user)
             toast.success('Login Success')
+            navigate(from);
         })
         .catch(error => {
             toast.error(error.message);
@@ -45,7 +51,7 @@ const SignIn = () => {
                         <button type='submit' className='py-4 w-full bg-blue-700 text-white font-semibold rounded-lg cursor-pointer'>Signin</button>
                     </div>
                 </form>
-                <GoogleSignIn></GoogleSignIn>
+                <GoogleSignIn from={from}></GoogleSignIn>
             </div>
         </div>
     );
