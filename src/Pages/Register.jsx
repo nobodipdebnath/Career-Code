@@ -2,6 +2,7 @@ import Lottie from 'lottie-react';
 import React, { use } from 'react';
 import registerLottie from '../assets/Lotties/register.json'
 import { AuthContext } from '../context/AuthContext/AuthContext';
+import GoogleSignIn from '../components/Share/GoogleSignIn';
 
 const Register = () => {
     const {createUser} = use(AuthContext);
@@ -43,6 +44,7 @@ const Register = () => {
                     <button type='submit' className='py-4 w-full bg-blue-700 text-white font-semibold rounded-lg cursor-pointer'>Register</button>
                 </div>
             </form>
+            <GoogleSignIn></GoogleSignIn>
         </div>
         </div>
     );

@@ -12,10 +12,7 @@ const Header = () => {
     >
       <div className="hero-overlay"></div>
       <div className="hero-content text-neutral-content text-center">
-        <motion.div animate={{
-            y:200,
-            x: -200,
-            transition: {duration: 4}
+        <motion.div animate={{y:-100, transition:{duration: 2}
         }} className="max-w-md">
           <motion.h1 animate={{color: ['#82E44C', '#D04838', '#3882D0', '#C038D0', '#D03840'], transition: {duration: 4, repeat: Infinity}}} className="mb-5 text-5xl font-bold">Hello there</motion.h1>
           <p className="mb-5">
