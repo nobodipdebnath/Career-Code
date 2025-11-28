@@ -9,6 +9,11 @@ const NavBar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink>About</NavLink></li>
         <li><NavLink>Contact</NavLink></li>
+        {
+          user && <>
+          <li><NavLink to='/myApplications'>My Applications</NavLink></li>
+          </>
+        }
     </>
     const handelSignOut = () => {
       signOutUser()

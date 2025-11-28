@@ -35,10 +35,10 @@ const JobCard = ({job}) => {
                 <h3 className='py-2 px-5 border rounded-lg shadow-sm font-medium hover:bg-blue-300 duration-500 border-gray-100'>{requirements[1]}</h3>
             </div>
             <div className='flex items-center justify-between my-5'>
-                <p className='text-lg font-semibold text-blue-400'>Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
+                <p className='text-sm text-blue-400'>Salary: {salaryRange.min} - {salaryRange.max}</p>
                 <div>
                     <Link to={`jobs/${_id}`}>
-                        <button  className='py-3 px-5 shadow-xl font-semibold text-white bg-blue-500 rounded-lg cursor-pointer hover:-translate-y-1 duration-500'>Apply Now</button>
+                        <button  className='py-3 px-5 shadow-xl font-semibold text-white bg-blue-500 rounded-lg cursor-pointer hover:-translate-y-1 duration-500'>Details</button>
                     </Link>
                 </div>
             </div>
