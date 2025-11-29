@@ -27,6 +27,7 @@ const AuthProvider = ({children}) => {
     const googleSignIn =()=> {
         return signInWithPopup(auth, googleProvider)
     }
+    
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -41,7 +42,7 @@ const AuthProvider = ({children}) => {
                 })
                 .catch(error => console.log(error));
             }
-            console.log('user in the auth state', currentUser)
+            // console.log('user in the auth state', currentUser)
         })
         return () => {
             unSubscribe();
