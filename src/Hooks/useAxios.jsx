@@ -1,35 +1,38 @@
-import axios from 'axios';
-import React from 'react';
-import useAuth from './useAuth';
+import axios from "axios";
+import React from "react";
+import useAuth from "./useAuth";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/'
-})
+  baseURL: "https://career-code-server-phi-five.vercel.app/",
+});
 const useAxios = () => {
+  const { user, signOutUser } = useAuth();
 
-    const {user, signOutUser} = useAuth();
+  axiosInstance.interceptors.request.use((config) => {
+    config.headers.authorization = `Bearer ${user.accessToken}`;
+    return config;
+  });
 
-    axiosInstance.interceptors.request.use(config => {
-        config.headers.authorization = `Bearer ${user.accessToken}`
-        return config;
-    });
+  // response interceptor
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error.status === 401) {
+        signOutUser()
+          .then(() => {
+            console.log("sign out user form 401 status code");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      return Promise.reject(error);
+    }
+  );
 
-    // response interceptor
-    axiosInstance.interceptors.response.use(response => {
-        return response;
-    }, error => {
-        if(error.status === 401){
-            signOutUser()
-            .then(() => {
-                console.log('sign out user form 401 status code')
-            }).catch(error => {
-                console.log(error)
-            })
-        }
-        return Promise.reject(error);
-    })
-
-    return axiosInstance;
+  return axiosInstance;
 };
 
 export default useAxios;

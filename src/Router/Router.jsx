@@ -12,60 +12,79 @@ import MyPostedJob from "../Pages/MyPostedJob";
 import ViewApplications from "../Pages/ViewApplications";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        Component: Root,
-        children: [
-            {
-                index: true, Component: HomePage
-            },
-            {
-                path: 'register',
-                Component: Register
-            },
-            {
-                path: 'signIn',
-                Component: SignIn
-            },
-            {
-                path: 'jobs/:id',
-                element: <PrivetRouter>
-                    <JobDetales></JobDetales>
-                </PrivetRouter>,
-                loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)
-            },
-            {
-                path:'/jobApply/:id',
-                element: <PrivetRouter>
-                    <JobApply></JobApply>
-                </PrivetRouter>
-            },
-            {
-                path: '/myApplications',
-                element: <PrivetRouter>
-                    <MyApplications></MyApplications>
-                </PrivetRouter>
-            },
-            {
-                path: 'addJob',
-                element: <PrivetRouter>
-                    <AddJob></AddJob>
-                </PrivetRouter>
-            },
-            {
-                path : 'myPostedJobs',
-                element: <PrivetRouter>
-                    <MyPostedJob></MyPostedJob>
-                </PrivetRouter>
-            },
-            {
-                path: '/applications/:job_id',
-                element: <PrivetRouter>
-                    <ViewApplications></ViewApplications>
-                </PrivetRouter>,
-                loader: ({params}) => fetch(`http://localhost:3000/applications/job/${params.job_id}`)
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    Component: Root,
+    children: [
+      {
+        index: true,
+        Component: HomePage,
+      },
+      {
+        path: "register",
+        Component: Register,
+      },
+      {
+        path: "signIn",
+        Component: SignIn,
+      },
+      {
+        path: "jobs/:id",
+        element: (
+          <PrivetRouter>
+            <JobDetales></JobDetales>
+          </PrivetRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://career-code-server-phi-five.vercel.app/jobs/${params.id}`
+          ),
+      },
+      {
+        path: "/jobApply/:id",
+        element: (
+          <PrivetRouter>
+            <JobApply></JobApply>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/myApplications",
+        element: (
+          <PrivetRouter>
+            <MyApplications></MyApplications>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "addJob",
+        element: (
+          <PrivetRouter>
+            <AddJob></AddJob>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "myPostedJobs",
+        element: (
+          <PrivetRouter>
+            <MyPostedJob></MyPostedJob>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/applications/:job_id",
+        element: (
+          <PrivetRouter>
+            <ViewApplications></ViewApplications>
+          </PrivetRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://career-code-server-phi-five.vercel.app/applications/job/${params.job_id}`
+          ),
+      },
+    ],
+  },
+]);
 export default router;

@@ -1,8 +1,10 @@
-
 export const applicationsCreatedByPromise = (email, accessToken) => {
-    return fetch(`http://localhost:3000/applications?email=${email}`, {
-        headers: {
-            authorization: `Bearer ${accessToken}`
-        }
-    }).then(res => res.json())
-}
+  return fetch(
+    `https://career-code-server-phi-five.vercel.app/applications?email=${email}`,
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    }
+  ).then((res) => res.json());
+};
